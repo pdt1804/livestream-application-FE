@@ -11,3 +11,94 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.loginForm {
+  background-color: aliceblue;
+  width: 400px;
+  height: 470px;
+  border: 3px rgb(255, 218, 116) solid;
+  border-radius: 10px;
+  display: block;
+}
+
+.loginBackground {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to right, #ff7e5f, #ba43ff); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginForm-label {
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  height: 80px;
+  padding-top: 20px;
+  font-weight: bold;
+}
+
+.inputLogin-label {
+  padding: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.inputLogin-ImageInputArea {
+  display: flex;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.inputLogin-input {
+  width: 80%;
+  padding-left: 10px;
+  font-size: 16px;
+}
+
+.loginForm-a {
+  font-size: 12px;
+  text-decoration: underline;
+  justify-content: end;
+  display: flex;
+  padding-right: 20px;
+  color: rgb(133, 33, 255);
+}
+
+.loginForm-button {
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+  border: 2px transparent solid;
+  border-radius: 10px;
+  color: black;
+  background-color: rgb(255, 197, 211);
+}
+
+.loginForm-button:hover {
+  opacity: 40%;
+}
+
+.loginForm-button:active {
+  width: 70px;
+  height: 30px;
+  font-size: 14px;
+}
+
+.loginForm-buttonArea {
+  display: flex;
+  justify-content: center;
+}
+
+.loginForm-h2 {
+  font-size: 20px;
+  color: red;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+.loginForm-errorMessage {
+  height: 50px;
+  margin-bottom: 10px;
+}
