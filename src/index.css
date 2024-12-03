@@ -102,3 +102,66 @@ code {
   height: 50px;
   margin-bottom: 10px;
 }
+
+.video-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  width: 100vw;
+  height: 100vh;
+}
+
+.video-display {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  background-color: blue;  
+  width: 1500px;
+  height: 700px;
+  margin-left: -100px;
+  margin-top: -100px;
+  padding: 20px;
+}
+
+.areaForScreenVideo {
+  width: 70%;
+  height: 90%;
+  background-color: transparent;
+  border-width: 2px;
+  border-color: red;
+  border-radius: 10px;
+  border-style: solid;
+}
+
+.interact-section {
+  width: 25%;
+  height: 90%;
+  margin-left: 50px;
+  background-color: saddlebrown;
+}
+
+.areaForCameraVideo {
+  width: 90%;
+  height: 30%;
+  margin-left: 20px;
+  margin-top: 20px;
+  background-color: transparent;
+  border-width: 2px;
+  border-color: red;
+  border-radius: 10px;
+  border-style: solid;
+}
+
+.areaForChatting {
+  width: 90%;
+  height: 60%;
+  margin-left: 20px;
+  margin-top: 20px;
+  background-color: aqua;
+}
+
+.screenVideo, .cameraVideo {
+  width: 100%;
+  height: 100%;
+}
+
