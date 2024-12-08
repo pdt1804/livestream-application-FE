@@ -1,15 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./index.css";
 import SockJS from 'sockjs-client';
 import { Client } from "@stomp/stompjs";
 
 export default function Livestream() {
   const screenVideo = useRef(null);
   const cameraVideo = useRef(null);
-  const [offer, setOffer] = useState(null);
-  const [candidate, setCandidate] = useState(null);
-  let socket;
-  let stompClient;
+  let candidate = [];
+  let socket = null;
+  let stompClient = null;
+  let rtcPeerConnection;
   const iceServers = {
     iceServers: [
       {
@@ -17,7 +16,6 @@ export default function Livestream() {
       }
     ]
   };
-  const rtcPeerConnection = new RTCPeerConnection(iceServers);
 
   useEffect(() => {
     const setupVideo = async () => {
@@ -27,29 +25,26 @@ export default function Livestream() {
       const screenStream = await navigator.mediaDevices.getDisplayMedia({ audio: true, video: true });
       screenVideo.current.srcObject = screenStream;
 
+      rtcPeerConnection = new RTCPeerConnection(iceServers);
+
       screenStream.getTracks().forEach(track => {
         rtcPeerConnection.addTrack(track, screenStream);
       });
 
-      rtcPeerConnection.onicecandidate = (event) => {
-        if (event.candidate) {
-          setCandidate(JSON.stringify(event.candidate));
-        }
-      };
-
       const offer = await rtcPeerConnection.createOffer();
       await rtcPeerConnection.setLocalDescription(offer);
-      setOffer(JSON.stringify(offer));
-    };
 
+      rtcPeerConnection.onicecandidate = (event) => {
+        if (event.candidate) {
+          candidate.push(event.candidate);
+        }
+      };
+    };
     setupVideo();
   }, []);
 
   useEffect(() => {
     const configureWebSocket = async () => {
-      console.log(offer);
-      console.log(candidate);
-
       socket = new SockJS("http://localhost:8080/ws");
       stompClient = new Client({
         webSocketFactory: () => socket,
@@ -60,28 +55,50 @@ export default function Livestream() {
       stompClient.activate();
     };
 
-    const isValid = offer && candidate;
-    if (isValid) configureWebSocket();
-  }, [candidate, offer]);
+    configureWebSocket();
+  }, []);
 
   const onConnect = async () => {
-    stompClient.subscribe("/user/livestream", (data) => sendDataForViewer(data.body));
+    stompClient.subscribe("/user/livestream/sendOfferAndCandidate", (data) => sendOfferAndIceCandidate(data.body));
+    stompClient.subscribe("/user/livestream/receiveAnswerAndCandidate", (data) => receiveAnswerAndCandidate(data.body));
   };
 
   const onError = async (error) => {
     console.error("Error while connecting to websocket server", error);
   };
 
-  const sendDataForViewer = async (data) => {
-    data = JSON.parse(data);
-    const payloadData = {
-      offer: offer,
-      candidate: candidate,
-      userName: data.userName,
-    };
+  const sendOfferAndIceCandidate = async (PayloadData) => {
+    const viewerName = JSON.parse(PayloadData);
+    
+    console.log(rtcPeerConnection.localDescription)
 
-    stompClient.publish({ destination: "/app/sendCandidate", body: JSON.stringify(payloadData) });
+    const offerAndCandidateData = {
+      offer: JSON.stringify(rtcPeerConnection.localDescription),
+      candidate: JSON.stringify(candidate),
+      viewerName: viewerName,
+    }
+
+    console.log(offerAndCandidateData)
+    stompClient.publish({ destination: "/app/sendOfferAndCandidate", body: JSON.stringify(offerAndCandidateData) });
   };
+
+  const receiveAnswerAndCandidate = async (PayloadData) => {
+    PayloadData = JSON.parse(PayloadData);
+    const remoteAnswer = JSON.parse(PayloadData.answer)
+    await rtcPeerConnection.setRemoteDescription(remoteAnswer)
+
+    const remoteCandidate = JSON.parse(PayloadData.candidate)
+    for (const candidate of remoteCandidate) {
+      console.log(candidate)
+      const iceCandidate = new RTCIceCandidate({
+        sdpMid: candidate.sdpMid,
+        sdpMLineIndex: candidate.sdpMLineIndex,
+        candidate: candidate.candidate,
+      });
+
+      await rtcPeerConnection.addIceCandidate(iceCandidate)
+    }
+  }
 
   return (
     <div className="video-section">
@@ -94,7 +111,7 @@ export default function Livestream() {
             <video className="cameraVideo" ref={cameraVideo} autoPlay />
           </div>
           <div className="areaForChatting">
-            {/* Area for chatting from viewers */}
+          
           </div>
         </div>
       </div>

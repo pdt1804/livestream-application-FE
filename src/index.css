@@ -165,3 +165,10 @@ code {
   height: 100%;
 }
 
+.areaForChattingViewerSide {
+  width: 90%;
+  height: 85%;
+  margin-left: 20px;
+  margin-top: 20px;
+  background-color: aqua;
+}
