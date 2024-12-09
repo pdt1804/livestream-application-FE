@@ -51,7 +51,7 @@ const ViewerLivestream = () => {
 
     rtcPeerConnection.onicecandidate = (event) => {
       if (event.candidate) {
-        console.log(event.candidate)
+        console.log(event)
         candidate.push(event.candidate);
       }
     };
@@ -74,6 +74,7 @@ const ViewerLivestream = () => {
       answer: JSON.stringify(answer),
       candidate: JSON.stringify(candidate),
       livestreamUserName: "livestream",
+      viewerName: inputUserName,
     }
 
     stompClient.publish({ destination: "/app/sendAnswerAndCandidate", body: JSON.stringify(answerAndCandidateData) });
@@ -87,7 +88,7 @@ const ViewerLivestream = () => {
           livestreamScreen.current.srcObject = event.streams[0];
         }
       };
-
+      console.log(inputUserName)
       stompClient.publish({ destination: "/app/requestForOffer", body: JSON.stringify(inputUserName) });
     } catch (error) {
       console.error("Error creating or setting local description", error);
@@ -103,6 +104,7 @@ const ViewerLivestream = () => {
 
   return (
     <div className="video-section">
+      <input type="text" value={inputUserName} onChange={(e) => setInputUserName(e.target.value)}/>
       <div className="video-display">
         <div className="areaForScreenVideo">
           <video className="screenVideo" ref={livestreamScreen} autoPlay />
