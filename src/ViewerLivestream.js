@@ -2,10 +2,21 @@ import React, { useState, useRef, useEffect } from "react";
 import SockJS from "sockjs-client";
 import { Client } from "@stomp/stompjs";
 
+const generateRandomString = (length) => {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let result = '';
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+};
+
 const ViewerLivestream = () => {
-  const [inputUserName, setInputUserName] = useState("viewer");
+  const [inputUserName, setInputUserName] = useState(generateRandomString(10));
   const livestreamScreen = useRef(null);
-  let candidate = [];
+  let remoteCandidate = [];
+  let localCandidate = [];
   const socket = new SockJS("http://localhost:8080/ws");
   const stompClient = new Client({
     webSocketFactory: () => socket,
@@ -28,17 +39,36 @@ const ViewerLivestream = () => {
     };
 
     configureWebsocket();
-  }, []);
+  }, [inputUserName]);
 
   const onConnect = async () => {
-    stompClient.subscribe("/user/" + inputUserName, (data) => receiveOfferAndceCandidate(data.body));
+    stompClient.subscribe("/user/" + inputUserName + "/receiveOffer", (data) => receiveOffer(data.body));
+    stompClient.subscribe("/user/" + inputUserName + "/receiveIceCandidate", (data) => receiveIceCandidate(data.body));
   };
 
   const onError = async (error) => {
     console.error("Error while connecting to websocket server", error);
   };
 
-  const receiveOfferAndceCandidate = async (PayloadData) => {
+  const receiveIceCandidate = async (PayloadData) => {
+    try {
+      PayloadData = JSON.parse(PayloadData)
+      const remoteIceCandidate = JSON.parse(PayloadData.candidate);
+      remoteCandidate.push(remoteIceCandidate)
+  
+      const iceCandidate = new RTCIceCandidate({
+        sdpMid: remoteIceCandidate.sdpMid,
+        sdpMLineIndex: remoteIceCandidate.sdpMLineIndex,
+        candidate: remoteIceCandidate.candidate,
+      });
+  
+      await rtcPeerConnection.addIceCandidate(iceCandidate)
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const receiveOffer = async (PayloadData) => {
     PayloadData = JSON.parse(PayloadData)
     const payloadOffer = JSON.parse(PayloadData.offer);
     console.log(PayloadData)
@@ -52,28 +82,14 @@ const ViewerLivestream = () => {
     rtcPeerConnection.onicecandidate = (event) => {
       if (event.candidate) {
         console.log(event)
-        candidate.push(event.candidate);
+        localCandidate.push(event.candidate);
       }
     };
 
-    const remoteCandidate = JSON.parse(PayloadData.candidate)
-    console.log(remoteCandidate)
-
-    for (const candidate of remoteCandidate) {
-      console.log(candidate)
-      const iceCandidate = new RTCIceCandidate({
-        sdpMid: candidate.sdpMid,
-        sdpMLineIndex: candidate.sdpMLineIndex,
-        candidate: candidate.candidate,
-      });
-
-      await rtcPeerConnection.addIceCandidate(iceCandidate)
-    }
-
     const answerAndCandidateData = {
       answer: JSON.stringify(answer),
-      candidate: JSON.stringify(candidate),
-      livestreamUserName: "livestream",
+      candidate: JSON.stringify(localCandidate),
+      livestreamUserName: PayloadData.livestreamUserName,
       viewerName: inputUserName,
     }
 
@@ -95,16 +111,8 @@ const ViewerLivestream = () => {
     }
   };
 
-  // return (
-  //   <div>
-  //     <video ref={livestreamScreen} autoPlay clas></video>
-  //     <button onClick={() => requestForOffer()}>Livestream Screen</button>
-  //   </div>
-  // );
-
   return (
     <div className="video-section">
-      <input type="text" value={inputUserName} onChange={(e) => setInputUserName(e.target.value)}/>
       <div className="video-display">
         <div className="areaForScreenVideo">
           <video className="screenVideo" ref={livestreamScreen} autoPlay />

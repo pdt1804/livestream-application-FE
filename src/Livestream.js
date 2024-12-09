@@ -4,7 +4,7 @@ import { Client } from "@stomp/stompjs";
 
 export default function Livestream() {
   const [inputUserName, setInputUserName] = useState("livestream");
-  const [numberOfViewer, setNumberOfViewer] = useState("livestream");
+  const [numberOfViewer, setNumberOfViewer] = useState(0);
   const screenVideo = useRef(null);
   const cameraVideo = useRef(null);
   let sharingScreenStream = null;
@@ -12,7 +12,6 @@ export default function Livestream() {
   let viewer = [];
   let socket = null;
   let stompClient = null;
-  //let rtcPeerConnection;
   const iceServers = {
     iceServers: [
       {
@@ -59,6 +58,8 @@ export default function Livestream() {
   };
 
   const sendOfferAndIceCandidate = async (PayloadData) => {
+    const viewerName = JSON.parse(PayloadData);
+
     const rtcPeerConnection = new RTCPeerConnection(iceServers);
 
     sharingScreenStream.getTracks().forEach(track => {
@@ -72,15 +73,19 @@ export default function Livestream() {
       console.log(event)
       if (event.candidate) {
         candidate.push(event.candidate);
+        const candidateData = {
+          viewerName: viewerName,
+          candidate: JSON.stringify(event.candidate)
+        }
+
+        stompClient.publish({ destination: "/app/sendCandidate", body: JSON.stringify(candidateData) });
       }
     };
-
-    const viewerName = JSON.parse(PayloadData);
     
     const offerAndCandidateData = {
       offer: JSON.stringify(rtcPeerConnection.localDescription),
-      candidate: JSON.stringify(candidate),
       viewerName: viewerName,
+      livestreamUserName: inputUserName,
     }
 
     const newViewer = {
@@ -91,7 +96,7 @@ export default function Livestream() {
     viewer.push(newViewer)
     console.log(offerAndCandidateData)
 
-    stompClient.publish({ destination: "/app/sendOfferAndCandidate", body: JSON.stringify(offerAndCandidateData) });
+    stompClient.publish({ destination: "/app/sendOffer", body: JSON.stringify(offerAndCandidateData) });
   };
 
   const receiveAnswerAndCandidate = async (PayloadData) => {
