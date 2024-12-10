@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import SockJS from 'sockjs-client';
 import { Client } from "@stomp/stompjs";
+import ViewerMessage from "./Components/ViewerMessage";
 
 export default function Livestream() {
   const [inputUserName, setInputUserName] = useState("livestream");
   const [numberOfViewer, setNumberOfViewer] = useState(0);
+  const [messages, setMessages] = useState([])
+  const chatArea = useRef(null);
   const screenVideo = useRef(null);
   const cameraVideo = useRef(null);
   let sharingScreenStream = null;
@@ -50,6 +53,7 @@ export default function Livestream() {
 
   const onConnect = async () => {
     stompClient.subscribe("/user/" + inputUserName + "/sendOfferAndCandidate", (data) => sendOfferAndIceCandidate(data.body));
+    stompClient.subscribe("/user/" + inputUserName + "/receiveMessage", (data) => receiveMessage(data.body));
     stompClient.subscribe("/user/" + inputUserName + "/receiveAnswerAndCandidate", (data) => receiveAnswerAndCandidate(data.body));
   };
 
@@ -57,8 +61,20 @@ export default function Livestream() {
     console.error("Error while connecting to websocket server", error);
   };
 
+  const receiveMessage = async (PayloadData) => {
+    PayloadData = JSON.parse(PayloadData);
+    const newMessage = {
+      content: PayloadData.content,
+      viewerName: PayloadData.viewerName,
+    }
+
+    console.log(messages.length)
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
+  };
+
   const sendOfferAndIceCandidate = async (PayloadData) => {
-    const viewerName = JSON.parse(PayloadData);
+    PayloadData = JSON.parse(PayloadData)
+    const viewerName = PayloadData.viewerName;
 
     const rtcPeerConnection = new RTCPeerConnection(iceServers);
 
@@ -132,8 +148,26 @@ export default function Livestream() {
     }
   }
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log(viewer)
+      setNumberOfViewer(viewer.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [numberOfViewer]);
+
+  useEffect(() => {
+    if (chatArea.current) {
+      chatArea.current.scrollTop = chatArea.current.scrollHeight;
+    }
+  }, [messages]);
+
   return (
     <div className="video-section">
+      <div className="displayTotalViewer">
+        <label>Viewer: {numberOfViewer}</label>
+      </div>
       <div className="video-display">
         <div className="areaForScreenVideo">
           <video className="screenVideo" ref={screenVideo} autoPlay />
@@ -142,8 +176,8 @@ export default function Livestream() {
           <div className="areaForCameraVideo">
             <video className="cameraVideo" ref={cameraVideo} autoPlay />
           </div>
-          <div className="areaForChatting">
-          
+          <div className="areaForChatting" ref={chatArea}>
+            {messages.map((item, index) => <ViewerMessage key={index} message={item} />)}          
           </div>
         </div>
       </div>

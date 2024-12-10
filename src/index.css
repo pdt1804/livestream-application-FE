@@ -158,6 +158,8 @@ code {
   margin-left: 20px;
   margin-top: 20px;
   background-color: aqua;
+  word-break: break-all;
+  overflow-y: auto;
 }
 
 .screenVideo, .cameraVideo {
@@ -171,4 +173,64 @@ code {
   margin-left: 20px;
   margin-top: 20px;
   background-color: aqua;
+  word-break: break-all;
+  overflow-y: auto;
+}
+
+.displayTotalViewer {
+  position: absolute;
+  top: 0;
+  left: 7%;
+  justify-content: left;
+  align-items: start;
+  display: flex;
+  padding: 10px;
+}
+
+.viewerMessage {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+.areaForTextingMessage {
+  padding-left: 19px;
+  padding-top: 10px;
+  height: 65px;
+  display: flex;
+}
+
+.InputMessage {
+  width: 80%;
+  height: 75%;
+}
+
+.inputMessageComponent {
+  height: 80%;
+  width: 95%;
+  padding-left: 6px;
+}
+
+.sendButton {
+  width: 20%;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sendButtonIcon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.sendButtonIcon:hover {
+  opacity: 30%;
+}
+
+.sendButtonIcon:active {
+  opacity: 0%;
+  width: 20px;
+  height: 20px;
 }
