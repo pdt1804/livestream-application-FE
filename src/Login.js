@@ -3,6 +3,9 @@ import InputLogin from "./Components/InputLogin";
 import "./index.css"
 import { MdAccountCircle } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL, checkError } from "./Resource";
 
 
 export default function Login (props) {
@@ -10,9 +13,18 @@ export default function Login (props) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
-  const authenticate = () => {
-
+  const authenticate = async () => {
+    const request = await axios.get(BASE_URL + "/api/v1/user/authenticate?userName=" + userName + "&passWord=" + password)
+    if (request.status === 200) {
+      const getErrorMessage = checkError(request.data);
+      if (getErrorMessage === null) {
+        navigate("/home")
+      } else {
+        setErrorMessage(getErrorMessage)
+      }
+    } 
   }
 
   const userNameIcon = <MdAccountCircle size={40} color="rgb(255, 197, 211)" style={{marginRight: "10px"}}/>
@@ -25,11 +37,11 @@ export default function Login (props) {
           <label className="loginForm-label">Sign In</label>
         </div>
         <div>
-          <InputLogin title="Username (*)" icon={userNameIcon} value={userName} setValue={setUserName} type="text"/>
-          <InputLogin title="Password (*)" icon={passwordIcon} value={password} setValue={setPassword} type="password"/>
+          <InputLogin title="Username" icon={userNameIcon} value={userName} setValue={setUserName} type="text"/>
+          <InputLogin title="Password" icon={passwordIcon} value={password} setValue={setPassword} type="password"/>
         </div>
         <div>
-          <a className="loginForm-a">click here to sign up account</a>
+          <a className="loginForm-a" onClick={() => navigate("/registration")}>click here to sign up account</a>
         </div>
         <div className="loginForm-errorMessage">
           <h2 className="loginForm-h2">{errorMessage}</h2>

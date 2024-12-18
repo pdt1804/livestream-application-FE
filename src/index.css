@@ -52,7 +52,7 @@ code {
 }
 
 .inputLogin-input {
-  width: 80%;
+  width: 85%;
   padding-left: 10px;
   font-size: 16px;
 }
@@ -101,6 +101,84 @@ code {
 .loginForm-errorMessage {
   height: 50px;
   margin-bottom: 10px;
+}
+
+.RegistrationForm {
+  background-color: aliceblue;
+  width: 500px;
+  height: 700px;
+  border: 3px rgb(255, 218, 116) solid;
+  border-radius: 10px;
+  display: block;
+}
+
+.RegistrationBackground {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to right, #ff7e5f, #ba43ff); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.RegistrationForm-label {
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  height: 80px;
+  padding-top: 20px;
+  font-weight: bold;
+}
+
+.RegistrationForm-a {
+  font-size: 12px;
+  text-decoration: underline;
+  justify-content: end;
+  display: flex;
+  padding-right: 20px;
+  color: rgb(133, 33, 255);
+}
+
+.RegistrationForm-button {
+  width: 100px;
+  height: 40px;
+  font-size: 20px;
+  border: 2px transparent solid;
+  border-radius: 10px;
+  color: black;
+  background-color: rgb(255, 197, 211);
+}
+
+.RegistrationForm-button:hover {
+  opacity: 40%;
+}
+
+.RegistrationForm-button:active {
+  width: 70px;
+  height: 30px;
+  font-size: 14px;
+}
+
+.RegistrationForm-buttonArea {
+  display: flex;
+  justify-content: center;
+}
+
+.RegistrationForm-h2 {
+  font-size: 20px;
+  color: red;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+.RegistrationForm-errorMessage {
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.loginForm-a:hover, .RegistrationForm-a:hover{
+  opacity: 40%;
+  cursor: pointer;
 }
 
 .video-section {
