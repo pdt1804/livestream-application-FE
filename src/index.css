@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #ff7e5f;
 }
 
 code {
@@ -193,18 +194,20 @@ code {
   display: flex;
   justify-content: left;
   align-items: center;
-  background-color: blue;  
+  background-color: aliceblue;  
   width: 1500px;
   height: 700px;
   margin-left: -100px;
   margin-top: -100px;
   padding: 20px;
+  border-radius: 20px;
 }
 
 .areaForScreenVideo {
+  display: block;
   width: 70%;
   height: 90%;
-  background-color: transparent;
+  background: #ff7e5f;
   border-width: 2px;
   border-color: red;
   border-radius: 10px;
@@ -215,7 +218,7 @@ code {
   width: 25%;
   height: 90%;
   margin-left: 50px;
-  background-color: saddlebrown;
+  background: #ff7e5f;
 }
 
 .areaForCameraVideo {
@@ -223,7 +226,7 @@ code {
   height: 30%;
   margin-left: 20px;
   margin-top: 20px;
-  background-color: transparent;
+  background: #ff7e5f;
   border-width: 2px;
   border-color: red;
   border-radius: 10px;
@@ -235,7 +238,7 @@ code {
   height: 60%;
   margin-left: 20px;
   margin-top: 20px;
-  background-color: aqua;
+  background: aliceblue;
   word-break: break-all;
   overflow-y: auto;
 }
@@ -250,7 +253,7 @@ code {
   height: 85%;
   margin-left: 20px;
   margin-top: 20px;
-  background-color: aqua;
+  background-color: aliceblue;
   word-break: break-all;
   overflow-y: auto;
 }

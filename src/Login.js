@@ -20,6 +20,9 @@ export default function Login (props) {
     if (request.status === 200) {
       const getErrorMessage = checkError(request.data);
       if (getErrorMessage === null) {
+        const splitData = request.data.split("-")
+        localStorage.setItem("userName", splitData[0])
+        localStorage.setItem("nickName", splitData[1])
         navigate("/home")
       } else {
         setErrorMessage(getErrorMessage)
