@@ -315,3 +315,58 @@ code {
   width: 20px;
   height: 20px;
 }
+
+.home {
+  width: 100vw;
+  height: 100vh;
+  background: gray;
+}
+
+.mainContent {
+  padding: 10px;
+}
+
+.LivestreamList {
+  display: block;
+}
+
+.livestreamItem {
+  width: 300px;
+  height: 350px;
+  background: lightgray;
+  margin: 10px;
+}
+
+.imageLivestreamItem {
+  width: 100%;
+  height: auto;
+}
+
+.headerLivestreamItem {
+  font-size: 16px;
+  color: black;
+}
+
+.nickNameLivestreamItem {
+  font-size: 12px;
+  color: black;
+}
+
+.optionBar {
+  display: block;
+}
+
+.inputLivestream {
+  width: 300px;
+  height: 30px;
+}
+
+.createLivestreamButton {
+  width: 200px;
+  height: 40px;
+}
+
+.labelLivestreamSession {
+  font-size: 20px;
+  color: black;
+}
