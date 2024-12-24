@@ -319,81 +319,94 @@ code {
 .home {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  background: #ff7e5f;
 }
 
 .mainContent {
-  padding: 40px;
-  margin: 0 auto;
-  max-width: 1200px;
+  padding-top: 40px;
+  padding-left: 100px;
 }
 
 .LivestreamList {
+  padding-top: 20px;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  flex: 1 1 200px;
 }
 
 .livestreamItem {
   width: 300px;
   height: 350px;
   background: #ba43ff;
-  padding: 10px;
+  display: block;
+  padding-top: 10px;
+  padding-left: 10px;
+  margin-right: 25px;
+  margin-bottom: 25px;
   border-radius: 10px;
-  transition: transform 0.3s;
 }
 
 .livestreamItem:hover {
-  transform: scale(1.05);
+  cursor: pointer;
+  opacity: 50%;
 }
 
 .imageLivestreamItem {
-  width: 100%;
+  width: 290px;
   height: 240px;
-  border-radius: 5px;
+  margin-bottom: 5px;
 }
 
 .headerLivestreamItem {
   font-size: 16px;
   font-weight: bold;
   color: aliceblue;
+  display: block;
+  height: 18%;
 }
 
 .nickNameLivestreamItem {
   font-size: 12px;
+  font-weight: 200;
   color: aliceblue;
 }
 
 .optionBar {
   display: flex;
-  justify-content: flex-start;
-  gap: 10px;
+  justify-content: left;
+  margin-bottom: 10px;
 }
 
 .inputLivestream {
   width: 300px;
   height: 30px;
-  border-radius: 15px;
+  font-size: 18px;
   padding-left: 10px;
-  font-size: 16px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .createLivestreamButton {
+  margin-left: 30px;
   width: 250px;
   height: 40px;
-  background-color: #15bd80;
-  color: white;
+  font-size: 20px;
+  font-weight: bolder;
+  color: aliceblue;
+  border-color: transparent;
+  border-width: 1px;
   border-radius: 14px;
-  font-weight: bold;
-  transition: opacity 0.3s;
+  background-color: #15bd80;
+  margin-top: 10px;
 }
 
 .createLivestreamButton:hover {
-  opacity: 0.8;
+  opacity: 50%;
+  cursor: pointer;
 }
 
 .labelLivestreamSession {
+  color: aliceblue;
   font-size: 26px;
   font-weight: bold;
-  color: aliceblue;
 }
