@@ -1,8 +1,10 @@
 import LivestreamList from "./Components/LivestreamList.js"
+import Navbar from "./Components/Navbar.js"
 
 export default function Home (props) {
   return (
     <div className="home">
+      <Navbar/>
       <div className="mainContent">
         <div className="optionBar">
           <input className="inputLivestream"/>
