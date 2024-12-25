@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ff7e5f;
+  background-color: #95a4df;
 }
 
 code {
@@ -16,7 +16,8 @@ code {
 .loginForm {
   background-color: aliceblue;
   width: 30%;
-  height: 50vh;
+  height: 'auto';
+  padding-bottom: 1%;
   border: 0.3rem rgb(255, 218, 116) solid;
   border-radius: 1rem;
   display: block;
@@ -25,7 +26,7 @@ code {
 .loginBackground {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to right, #ff7e5f, #ba43ff); 
+  background: linear-gradient(to right, #53577c, #163858); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,7 +65,7 @@ code {
   justify-content: flex-end;
   display: flex;
   padding-right: 1.5rem;
-  color: rgb(133, 33, 255);
+  color: #343743;
 }
 
 .loginForm-button {
@@ -74,7 +75,7 @@ code {
   border: 0.2rem transparent solid;
   border-radius: 0.6rem;
   color: black;
-  background-color: rgb(255, 197, 211);
+  background-color: #9ec9ec;
 }
 
 .loginForm-button:hover {
@@ -94,7 +95,7 @@ code {
 
 .loginForm-h2 {
   font-size: 1.2rem;
-  color: red;
+  color: crimson;
   padding-left: 1rem;
   padding-top: 0.5rem;
 }
@@ -107,7 +108,8 @@ code {
 .RegistrationForm {
   background-color: aliceblue;
   width: 35%;
-  height: 60vh;
+  height: 'auto';
+  padding-bottom: 1%;
   border: 0.3rem rgb(255, 218, 116) solid;
   border-radius: 1rem;
   display: block;
@@ -116,7 +118,7 @@ code {
 .RegistrationBackground {
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to right, #ff7e5f, #ba43ff); 
+  background: linear-gradient(to right, #53577c, #163858); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,7 +139,7 @@ code {
   justify-content: flex-end;
   display: flex;
   padding-right: 1.5rem;
-  color: rgb(133, 33, 255);
+  color: #343743;
 }
 
 .RegistrationForm-button {
@@ -147,7 +149,7 @@ code {
   border: 0.2rem transparent solid;
   border-radius: 0.6rem;
   color: black;
-  background-color: rgb(255, 197, 211);
+  background-color: #9ec9ec;
 }
 
 .RegistrationForm-button:hover {
@@ -167,7 +169,7 @@ code {
 
 .RegistrationForm-h2 {
   font-size: 1.2rem;
-  color: red;
+  color: crimson;
   padding-left: 1rem;
   padding-top: 0.5rem;
 }
@@ -207,9 +209,9 @@ code {
   display: block;
   width: 70%;
   height: 90%;
-  background: #ff7e5f;
+  background: linear-gradient(to right, #53577c, #163858); 
   border-width: 0.125rem;
-  border-color: red;
+  border-color: crimson;
   border-radius: 0.625rem;
   border-style: solid;
 }
@@ -225,7 +227,7 @@ code {
   width: 25%;
   height: 90%;
   margin-left: 2%;
-  background: #ff7e5f;
+  background: linear-gradient(to right, #53577c, #163858); 
 }
 
 .areaForCameraVideo {
@@ -233,9 +235,9 @@ code {
   height: 30%;
   margin-left: 2%;
   margin-top: 2%;
-  background: #ff7e5f;
+  background: linear-gradient(to right, #53577c, #163858); 
   border-width: 0.125rem;
-  border-color: red;
+  border-color: crimson;
   border-radius: 0.625rem;
   border-style: solid;
 }
@@ -287,13 +289,13 @@ code {
 }
 
 .viewerInformation {
-  color: #ba43ff;
+  color: #f7ecfe;
   font-size: 1.25rem;
   margin-top: -0.625rem;
 }
 
 .fullScreenIcon {
-  color: #15bd80;
+  color: #bf2a2a;
   font-size: 1rem;
   margin-top: 0.625rem;
 }
@@ -352,7 +354,7 @@ code {
 .home, .about {
   width: 100vw;
   height: 100vh;
-  background: #ff7e5f;
+  background: linear-gradient(to right, #53577c, #163858); 
 }
 
 .mainContent {
@@ -370,7 +372,7 @@ code {
 .livestreamItem {
   width: 20%;
   height: auto;
-  background: #ba43ff;
+  background: #163858;
   display: block;
   padding: 0.625rem;
   margin-right: 1.5625rem;
@@ -426,7 +428,7 @@ code {
   font-size: 1.2rem;
   font-weight: bold;
   color: aliceblue;
-  background-color: #15bd80;
+  background-color: #bf2a2a;
   border: none;
   border-radius: 14px;
   padding: 0 1rem;
@@ -531,7 +533,7 @@ code {
   width: auto;
   max-width: 10rem;
   height: 2.5rem;
-  background-color: #ba43ff;
+  background-color: #bf2a2a;
   color: aliceblue;
   border: 2px solid aliceblue;
   border-radius: 20px;
@@ -554,7 +556,7 @@ code {
   width: 15rem;
   height: 20rem;
   background-color: aliceblue;
-  border: 0.5rem solid #ff7e5f;
+  border: 0.5rem solid #343743;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -563,9 +565,17 @@ code {
   padding: 1rem;
 }
 
+.labelAboutUs {
+  color: #b4a9da;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0.25rem;
+}
+
 .numberAboutUs {
   font-size: 4rem;
-  color: #ff7e5f;
+  color: #343743;
   font-weight: bold;
 }
 
@@ -578,6 +588,7 @@ code {
 
 .informationAboutUs {
   width: 100%;
+  height: fit-content;
   padding: 2rem;
 }
 
@@ -587,32 +598,33 @@ code {
 
 .informationLabel {
   font-size: 1.5rem;
-  color: #ba43ff;
+  color: #f7ecfe;
   font-weight: bold;
 }
 
-.publicInformation {
+.publicInformation, .rowInformation {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 1rem;
 }
 
 .inputAboutUs {
   width: calc(100% - 1rem);
   max-width: 15rem;
-  height: 2.5rem;
+  height: 2rem;
   font-size: 1rem;
   border-radius: 20px;
-  border: none;
+  border: 2px solid #343743;
   padding-left: 1rem;
 }
 
 .updatePublicInformation, .updatePrivateInformation {
   width: auto;
   height: 2.5rem;
-  background: #15bd80;
+  background: #bf2a2a;
   color: aliceblue;
-  border: 2px solid #15bd80;
+  border: 2px solid #bf2a2a;
   border-radius: 0.5rem;
   padding: 0 1rem;
 }
@@ -625,7 +637,7 @@ code {
 .endLivestreamSessionButton {
   width: auto;
   padding: 0.5rem 1rem;
-  background-color: red;
+  background-color: crimson;
   color: aliceblue;
   border-radius: 20px;
   border: 4px solid aliceblue;

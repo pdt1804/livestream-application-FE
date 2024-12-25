@@ -30,8 +30,8 @@ export default function Login (props) {
     } 
   }
 
-  const userNameIcon = <MdAccountCircle size={40} color="rgb(255, 197, 211)" style={{marginRight: "10px"}}/>
-  const passwordIcon = <RiLockPasswordFill size={40} color="rgb(255, 197, 211)" style={{marginRight: "10px"}}/>
+  const userNameIcon = <MdAccountCircle size={40} color="#9ec9ec" style={{marginRight: "10px"}}/>
+  const passwordIcon = <RiLockPasswordFill size={40} color="#9ec9ec" style={{marginRight: "10px"}}/>
 
   return (
     <div className="loginBackground">
