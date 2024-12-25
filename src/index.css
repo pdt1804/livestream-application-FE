@@ -316,7 +316,7 @@ code {
   height: 20px;
 }
 
-.home {
+.home, .about {
   width: 100vw;
   height: 100vh;
   background: #ff7e5f;
@@ -409,4 +409,140 @@ code {
   color: aliceblue;
   font-size: 26px;
   font-weight: bold;
+}
+
+
+.briefIntroduction {
+  width: 100vw;
+  height: 400px;
+  background: gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.informationAboutUs {
+  width: 100vw;
+  height: 70%;
+  display: block;
+  padding-left: 20px;
+  padding-top: 20px;
+  background: lightgray;
+}
+
+.publicInformationArea, .privateInformationArea {
+  display: block;
+  justify-content: left;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.informationLabel {
+  font-size: 18px;
+  color: black;
+  font-weight: normal;
+}
+
+.publicInformation {
+  margin-top: 10px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.labelAboutUs {
+  font-size: 16px;
+  color: black;
+}
+
+.inputAboutUs {
+  width: 200px;
+  height: 20px;
+  font-size: 14px;
+  padding-left: 5px;
+  border-radius: 2px;
+  border: 1px solid black;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.updatePublicInformation {
+  width: 70px;
+  height: 25px;
+  margin-left: 10px;
+  border: 1px solid green;
+  border-radius: 5px;
+  background: green;
+  color: white;
+  margin-top: 5px;
+}
+
+.updatePublicInformation:hover {
+  background: darkgreen;
+  cursor: pointer;
+}
+
+.rowInformation {
+  margin-bottom: 10px;
+}
+
+.updatePrivateInformation {
+  width: 90px;
+  height: 30px;
+  margin-left: 50px;
+  margin-top: 10px;
+  border: 1px solid blue;
+  border-radius: 5px;
+  background: blue;
+  color: white;
+}
+
+.updatePrivateInformation:hover {
+  background: darkblue;
+  cursor: pointer;
+}
+
+.introductionCard {
+  width: 200px;
+  height: 250px;
+  background-color: lightgray;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 10px;
+  border-color: black;
+  display: block;
+}
+
+.numberArea {
+  width: 100%;
+  height: 60%;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.numberAboutUs {
+  font-size: 50px;
+  color: black;
+  font-weight: bold;
+}
+
+.contentArea {
+  width: 100%;
+  height: 40%;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentAboutUs {
+  font-size: 16px;
+  color: white;
+  font-weight: normal;
 }

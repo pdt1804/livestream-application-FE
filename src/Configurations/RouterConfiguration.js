@@ -5,6 +5,7 @@ import Livestream from "../Livestream";
 import ViewerLivestream from "../ViewerLivestream";
 import Registration from "../Registration";
 import Home from "../Home";
+import About from "../About";
 
 export default function RouterConfiguration() {
   return (
@@ -12,10 +13,11 @@ export default function RouterConfiguration() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/livestream" element={<Livestream />} />
-        <Route path="/viewer" element={<ViewerLivestream />} />
+        <Route path="/home/livestream" element={<Livestream />} />
+        <Route path="/home/viewer" element={<ViewerLivestream />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </Router>
   );
