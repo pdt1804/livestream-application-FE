@@ -21,7 +21,7 @@ const settings = ['Logout'];
 function Navbar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -38,17 +38,17 @@ function Navbar() {
     setAnchorElUser(null);
   };
 
-  const Logout = () => {
-    localStorage.removeItem("userName")
-    localStorage.removeItem("nickName")
-    navigate("/login")
-  }
+  const handleLogout = () => {
+    localStorage.removeItem("userName");
+    localStorage.removeItem("nickName");
+    navigate("/login");
+  };
 
   return (
-    <AppBar position="static" sx={{background: "#ba43ff"}}>
+    <AppBar position="static" sx={{ background: "#ba43ff" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, position: "absolute", left: "-10%"  }} />
+          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, position: "absolute", left: "2%" }} />
           <Typography
             variant="h6"
             noWrap
@@ -62,12 +62,12 @@ function Navbar() {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
-              position: "absolute", left: "-8%" 
+              position: "absolute", left: "5%"
             }}
           >
             UIT
           </Typography>
-          <Box sx={{ flexGrow: 1,  display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -118,9 +118,9 @@ function Navbar() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            UIT
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, position: "absolute", left: "0%" }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, position: "absolute", left: "10%" }}>
             {pages.map((page) => (
               <Button
                 key={page}
@@ -131,7 +131,7 @@ function Navbar() {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: 0, position: "absolute", right: "-10%" }}>
+          <Box sx={{ flexGrow: 0, position: "absolute", right: "2%" }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="https://cdn-icons-png.flaticon.com/512/8792/8792047.png" />
@@ -154,7 +154,7 @@ function Navbar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={() => Logout()}>
+                <MenuItem key={setting} onClick={handleLogout}>
                   <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
                 </MenuItem>
               ))}
@@ -165,4 +165,5 @@ function Navbar() {
     </AppBar>
   );
 }
+
 export default Navbar;
