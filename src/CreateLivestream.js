@@ -43,10 +43,6 @@ export default function CreateLivestream() {
           <label className="labelLivestream">Title</label>
           <input className="inputLivestream" type="text" placeholder="Enter title for livestream session" value={title} onChange={(e) => setTitle(e.target.value)}/>
         </div>
-        {/* <div className="inputLivestreamInformation">
-          <label className="labelLivestream">Description</label>
-          <input className="inputLivestream" type="text" placeholder="Enter description for livestream session" value={description} onChange={(e) => setDescription(e.target.value)}/>
-        </div> */}
         <div className="inputLivestreamInformation">
           <label className="labelLivestream">Background Livestream</label>
           <ImageList selectedImage={selectedImage} setSelectedImage={setSelectedImage}/>

@@ -3,6 +3,8 @@ import SockJS from "sockjs-client";
 import { Client } from "@stomp/stompjs";
 import ViewerMessage from "./Components/ViewerMessage";
 import { IoIosSend } from "react-icons/io";
+import { BsArrowsFullscreen } from "react-icons/bs";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const generateRandomString = (length) => {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -15,13 +17,17 @@ const generateRandomString = (length) => {
 };
 
 const ViewerLivestream = () => {
-  const [inputUserName, setInputUserName] = useState(generateRandomString(10));
-  const [livestreamUserName, setLivestreamUserName] = useState("livestream");
+  const location = useLocation();
+  const { session } = location.state || {};
+  const navigate = useNavigate()
+  const [valid, setValid] = useState(true);
+  const [inputUserName, setInputUserName] = useState(localStorage.getItem("userName"));
+  const [livestreamUserName, setLivestreamUserName] = useState(session.user.userName);
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const livestreamScreen = useRef(null);
   const chatArea = useRef(null);
-  const stompClientRef = useRef(null); // Use useRef for stompClient
+  const stompClientRef = useRef(null); 
   let remoteCandidate = [];
   let localCandidate = [];
   let rtcPeerConnection;
@@ -54,6 +60,7 @@ const ViewerLivestream = () => {
     stompClient.subscribe("/user/" + inputUserName + "/receiveOffer", (data) => receiveOffer(data.body));
     stompClient.subscribe("/user/" + inputUserName + "/receiveIceCandidate", (data) => receiveIceCandidate(data.body));
     stompClient.subscribe("/user/" + livestreamUserName + "/receiveMessage", (data) => receiveMessage(data.body));
+    stompClient.subscribe("/user/" + livestreamUserName + "/endSession", () => navigate("/home"));
   };
 
   const onError = async (error) => {
@@ -119,6 +126,7 @@ const ViewerLivestream = () => {
   };
 
   const requestForOffer = async () => {
+    setValid(false)
     try {
       rtcPeerConnection = new RTCPeerConnection(iceServers);
       rtcPeerConnection.ontrack = (event) => {
@@ -169,12 +177,21 @@ const ViewerLivestream = () => {
     setMessage("")
   }
 
+  const fullScreenIcon = <BsArrowsFullscreen className="fullScreenIcon" onClick={() => handleFullScreen(livestreamScreen)}/>
+  
   return (
     <div className="video-section">
       <div className="video-display">
         <div className="areaForScreenVideo">
-          <video className="screenVideo" ref={livestreamScreen} autoPlay />
-          <button onClick={() => handleFullScreen(livestreamScreen)}>Full Screen</button>
+          <div className="informationSession"> 
+            <label className="titleSession">{session.title}</label>
+            <label className="titleSession">{fullScreenIcon}</label>
+          </div>
+          {valid ? 
+          <div className="areaPlayButton">
+            <button className={valid == true ? "playLivestream-valid" : "playLivestream-invalid"} onClick={() => requestForOffer()}></button>
+          </div> :
+          <video className="screenVideo" ref={livestreamScreen} autoPlay /> }
         </div>
         <div className="interact-section">
           <div className="areaForChattingViewerSide" ref={chatArea}>
@@ -190,7 +207,6 @@ const ViewerLivestream = () => {
           </div>
         </div>
       </div>
-      <button onClick={() => requestForOffer()}>Livestream Screen</button>
     </div>
   )
 };

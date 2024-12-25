@@ -1,22 +1,36 @@
-export const BASE_URL = "http://127.0.0.1:8080";
+export const BASE_URL = "http://127.0.0.1:8080"
 
 export const checkError = (message) => {
-  if (message.toString().startsWith("001")) {    return "Username or Password are not correct";  }
+  if (message.toString().startsWith("001")) {
+    return "Username or Password are not correct";
+  }
 
-  if (message.toString().startsWith("002")) {    return "Username already existed";  }
+  if (message.toString().startsWith("002")) {
+    return "Username already existed";
+  }
 
-  if (message.toString().startsWith("003")) {    return "Invalid year of birth";  }
+  if (message.toString().startsWith("003")) {
+    return "Invalid year of birth";
+  }
 
-  if (message.toString().startsWith("004")) {    return "Couldn't find user by username";  }
+  if (message.toString().startsWith("004")) {
+    return "Couldn't find user by username";
+  }
 
-  if (message.toString().startsWith("005")) {    return "Error ending livestream session";  }
+  if (message.toString().startsWith("005")) {
+    return "Error ending livestream session";
+  }
 
-  if (message.toString().startsWith("006")) {    return "Couldn't find livestream session by Id";  }
+  if (message.toString().startsWith("006")) {
+    return "Couldn't find livestream session by Id";
+  }
 
-  if (message.toString().startsWith("008")) {    return "Current Password is not correct !";  }
-
+  if (message.toString().startsWith("008")) {
+    return "Current Password is not correct !";
+  }
+  
   return null;
-};
+}
 
 export const livestreamBackground = [
   "https://cdn.tgdd.vn/GameApp/4/221941/Screentshots/lien-minh-huyen-thoai-game-moba-pho-bien-nhat-the-gioi-21-05-2020-2.jpg",
@@ -30,7 +44,7 @@ export const livestreamBackground = [
   "https://tailieu.link/images/anh-dai-dien/165.jpg",
   "https://xboxera.com/wp-content/uploads/2024/11/starcraft-2-collection.jpeg",
   "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/6570/header.jpg?t=1187643692",
-  "https://didongviet.vn/dchannel/wp-content/uploads/2023/03/1-cf-la-gi-didongviet.jpg",
+  "https://didongviet.vn/dchannel/wp-content/uploads/2023/03/1-cf-la-gi-didongviet.jpg", 
   "https://t4.ftcdn.net/jpg/07/23/14/93/360_F_723149335_tA0Fo8zefrHzYlSgXRMYHmBQk7CuWrRd.jpg",
   "https://static.vecteezy.com/system/resources/previews/045/132/934/non_2x/a-beautiful-picture-of-the-eiffel-tower-in-paris-the-capital-of-france-with-a-wonderful-background-in-wonderful-natural-colors-photo.jpg",
   "https://cdn.pixabay.com/photo/2023/05/20/16/54/rose-8006847_640.jpg",
@@ -39,4 +53,4 @@ export const livestreamBackground = [
   "https://watermark.lovepik.com/photo/40024/8584.jpg_wh1200.jpg",
   "https://www.alwayspets.com/wp-content/uploads/2024/11/f1e4839891dc405bb02662991c230eba.webp",
   "https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L",
-];
+]

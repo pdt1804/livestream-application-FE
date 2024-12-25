@@ -2,14 +2,20 @@ import React, { useEffect, useRef, useState } from "react";
 import SockJS from 'sockjs-client';
 import { Client } from "@stomp/stompjs";
 import ViewerMessage from "./Components/ViewerMessage";
+import { BsArrowsFullscreen } from "react-icons/bs";
+import axios from "axios";
+import { BASE_URL, checkError } from "./Resource";
+import { useNavigate } from "react-router-dom";
 
 export default function Livestream() {
-  const [inputUserName, setInputUserName] = useState("livestream");
+  const [inputUserName, setInputUserName] = useState(localStorage.getItem("userName"));
   const [numberOfViewer, setNumberOfViewer] = useState(0);
   const [messages, setMessages] = useState([])
+  const [title, setTitle] = useState(localStorage.getItem("title"))
   const chatArea = useRef(null);
   const screenVideo = useRef(null);
   const cameraVideo = useRef(null);
+  const navigate = useNavigate()
   let sharingScreenStream = null;
   let candidate = [];
   let viewer = [];
@@ -150,7 +156,6 @@ export default function Livestream() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log(viewer)
       setNumberOfViewer(viewer.length);
     }, 4000);
 
@@ -163,14 +168,47 @@ export default function Livestream() {
     }
   }, [messages]);
 
+  const handleFullScreen = (videoRef) => {
+    if (videoRef.current.requestFullscreen) {
+      videoRef.current.requestFullscreen();
+    } else if (videoRef.current.mozRequestFullScreen) { 
+      videoRef.current.mozRequestFullScreen();
+    } else if (videoRef.current.webkitRequestFullscreen) { 
+      videoRef.current.webkitRequestFullscreen();
+    } else if (videoRef.current.msRequestFullscreen) { 
+      videoRef.current.msRequestFullscreen();
+    }
+  };
+
+  const fullScreenIcon = <BsArrowsFullscreen className="fullScreenIcon" onClick={() => handleFullScreen(screenVideo)}/>
+  
+  const endSession = async () => {
+    const id = localStorage.getItem("id")
+    const request = await axios.put(BASE_URL + "/api/v1/livestream/endSession?id=" + id)
+    if (request.status === 200) {
+      const errorMessage = checkError(request.data) 
+      if (errorMessage === null) {
+        //stompClient.publish({ destination: "/app/endSession", body: JSON.stringify(inputUserName) });
+        navigate("/home")
+      } else {
+        console.error(errorMessage)
+      }
+    }
+  }
+
   return (
     <div className="video-section">
-      <div className="displayTotalViewer">
-        <label>Viewer: {numberOfViewer}</label>
-      </div>
       <div className="video-display">
         <div className="areaForScreenVideo">
+          <div className="informationSession"> 
+            <label className="titleSession">{title}</label>
+            <label className="titleSession">{fullScreenIcon}</label>
+          </div>
           <video className="screenVideo" ref={screenVideo} autoPlay />
+          <div className="informationLivestream">
+            <label className="viewerInformation">Viewer: {numberOfViewer}</label>
+            <button className="endLivestreamSessionButton" onClick={() => endSession()}>End</button>
+          </div>
         </div>
         <div className="interact-section">
           <div className="areaForCameraVideo">
