@@ -12,35 +12,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.loginForm {
-  background-color: aliceblue;
-  width: 30%;
-  height: 'auto';
-  padding-bottom: 1%;
-  border: 0.3rem rgb(255, 218, 116) solid;
-  border-radius: 1rem;
-  display: block;
-}
-
-.loginBackground {
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(to right, #53577c, #163858); 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.loginForm-label {
-  font-size: 2.5rem;
-  display: flex;
-  justify-content: center;
-  height: 15%;
-  padding-top: 1rem;
-  font-weight: bold;
-}
-
 .inputLogin-label {
   padding: 1.5rem;
   font-size: 1.2rem;
@@ -59,52 +30,6 @@ code {
   font-size: 1rem;
 }
 
-.loginForm-a {
-  font-size: 0.8rem;
-  text-decoration: underline;
-  justify-content: flex-end;
-  display: flex;
-  padding-right: 1.5rem;
-  color: #343743;
-}
-
-.loginForm-button {
-  width: 8rem;
-  height: 2.5rem;
-  font-size: 1.2rem;
-  border: 0.2rem transparent solid;
-  border-radius: 0.6rem;
-  color: black;
-  background-color: #9ec9ec;
-}
-
-.loginForm-button:hover {
-  opacity: 0.4;
-}
-
-.loginForm-button:active {
-  width: 6rem;
-  height: 2rem;
-  font-size: 0.9rem;
-}
-
-.loginForm-buttonArea {
-  display: flex;
-  justify-content: center;
-}
-
-.loginForm-h2 {
-  font-size: 1.2rem;
-  color: crimson;
-  padding-left: 1rem;
-  padding-top: 0.5rem;
-}
-
-.loginForm-errorMessage {
-  height: 10%;
-  margin-bottom: 1rem;
-}
-
 .RegistrationForm {
   background-color: aliceblue;
   width: 35%;
@@ -117,8 +42,8 @@ code {
 
 .RegistrationBackground {
   width: 100vw;
-  height: 100vh;
-  background: linear-gradient(to right, #53577c, #163858); 
+  height: fit-content;
+  background: linear-gradient(to right, #53577c, #635117); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -183,90 +108,7 @@ code {
   opacity: 0.4;
   cursor: pointer;
 }
-/* Improved responsive design using flexible units */
-.video-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;  
-  width: 100vw;
-  height: 100vh;
-}
 
-.video-display {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  background-color: aliceblue;  
-  width: 80%;
-  height: 70%;
-  margin-left: -5%;
-  margin-top: -5%;
-  padding: 2rem;
-  border-radius: 1.25rem;
-}
-
-.areaForScreenVideo {
-  display: block;
-  width: 70%;
-  height: 90%;
-  background: linear-gradient(to right, #53577c, #163858); 
-  border-width: 0.125rem;
-  border-color: crimson;
-  border-radius: 0.625rem;
-  border-style: solid;
-}
-
-.titleSession {
-  font-size: 1.25rem;
-  color: aliceblue;
-  margin-left: 0.5rem;
-  width: 40%;
-}
-
-.interact-section {
-  width: 25%;
-  height: 90%;
-  margin-left: 2%;
-  background: linear-gradient(to right, #53577c, #163858); 
-}
-
-.areaForCameraVideo {
-  width: 90%;
-  height: 30%;
-  margin-left: 2%;
-  margin-top: 2%;
-  background: linear-gradient(to right, #53577c, #163858); 
-  border-width: 0.125rem;
-  border-color: crimson;
-  border-radius: 0.625rem;
-  border-style: solid;
-}
-
-.areaForChatting {
-  width: 90%;
-  height: 60%;
-  margin-left: 2%;
-  margin-top: 2%;
-  background: aliceblue;
-  word-break: break-word;
-  overflow-y: auto;
-}
-
-.screenVideo {
-  width: 100%;
-  height: 95%;
-  margin-bottom: 0.3125rem;
-}
-
-.cameraVideo {
-  width: 100%;
-  height: 100%;
-}
-
-.informationSession {
-  display: flex;
-  gap: 5%;
-}
 
 .areaForChattingViewerSide {
   width: 90%;
@@ -631,19 +473,5 @@ code {
 
 .updatePublicInformation:hover, .updatePrivateInformation:hover {
   opacity: 0.5;
-  cursor: pointer;
-}
-
-.endLivestreamSessionButton {
-  width: auto;
-  padding: 0.5rem 1rem;
-  background-color: crimson;
-  color: aliceblue;
-  border-radius: 20px;
-  border: 4px solid aliceblue;
-}
-
-.endLivestreamSessionButton:hover {
-  opacity: 50%;
   cursor: pointer;
 }

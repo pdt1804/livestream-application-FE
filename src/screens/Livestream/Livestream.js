@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import SockJS from 'sockjs-client';
 import { Client } from "@stomp/stompjs";
-import ViewerMessage from "./Components/ViewerMessage";
+import ViewerMessage from "../../Components/ViewerMessage";
 import { BsArrowsFullscreen } from "react-icons/bs";
 import axios from "axios";
-import { BASE_URL, checkError } from "./Resource";
+import { BASE_URL, checkError } from "../../Resource";
 import { useNavigate } from "react-router-dom";
+
+import './Livestream.css'
 
 export default function Livestream() {
   const [inputUserName, setInputUserName] = useState(localStorage.getItem("userName"));
@@ -30,6 +32,9 @@ export default function Livestream() {
   };
 
   useEffect(() => {
+    if(title === 'null')
+      setTitle('This is title')
+
     const setupVideo = async () => {
       const cameraStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
       cameraVideo.current.srcObject = cameraStream;
@@ -206,7 +211,6 @@ export default function Livestream() {
           </div>
           <video className="screenVideo" ref={screenVideo} autoPlay />
           <div className="informationLivestream">
-            <label className="viewerInformation">Viewer: {numberOfViewer}</label>
             <button className="endLivestreamSessionButton" onClick={() => endSession()}>End</button>
           </div>
         </div>

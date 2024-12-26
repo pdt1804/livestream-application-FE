@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import LivestreamItem from "./LivestreamItem"
 import axios from "axios"
-import { BASE_URL, checkError } from "../Resource"
+import { BASE_URL, checkError } from "../../Resource"
 
 export default function LivestreamList() {
   const [sessions, setSessions] = useState([])

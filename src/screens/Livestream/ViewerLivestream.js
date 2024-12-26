@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import SockJS from "sockjs-client";
 import { Client } from "@stomp/stompjs";
-import ViewerMessage from "./Components/ViewerMessage";
+import ViewerMessage from "../../Components/ViewerMessage";
 import { IoIosSend } from "react-icons/io";
 import { BsArrowsFullscreen } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";

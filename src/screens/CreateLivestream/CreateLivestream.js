@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import ImageList from "./Components/ImageList";
+import ImageList from "../../Components/ImageList";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 import axios from "axios";
-import { BASE_URL, checkError } from "./Resource";
+import { BASE_URL, checkError } from "../../Resource";
 import { useState } from "react";
 
 export default function CreateLivestream() {

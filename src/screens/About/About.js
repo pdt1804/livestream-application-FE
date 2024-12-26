@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
-import LivestreamList from "./Components/LivestreamList.js"
-import Navbar from "./Components/Navbar.js"
+import LivestreamList from "../../Components/LivestreamList.js"
+import Navbar from "../../Components/Navbar.js"
 import { useNavigate } from "react-router-dom"
-import IntroductionCard from "./Components/IntroductionCard.js"
+import IntroductionCard from "../../Components/IntroductionCard.js"
 import axios from "axios"
-import { BASE_URL, checkError } from "./Resource.js"
+import { BASE_URL, checkError } from "../../Resource.js"
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 
 export default function About (props) {

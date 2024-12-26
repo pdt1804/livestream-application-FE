@@ -1,5 +1,5 @@
 import { useState } from "react";
-import InputLogin from "./Components/InputLogin";
+import InputLogin from "../../Components/InputLogin";
 import "./index.css"
 import { MdAccountCircle } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
@@ -7,7 +7,7 @@ import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { FaCakeCandles } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BASE_URL, checkError } from "./Resource";
+import { BASE_URL, checkError } from "../../Resource";
 
 
 export default function Registration (props) {

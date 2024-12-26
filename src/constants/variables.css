@@ -1,0 +1,36 @@
+/* 
+var(--)
+*/
+
+:root {
+    /* Colors */
+    --PrimaryBackground: #D99AD5;
+    --PrimaryBackgroundGradient: linear-gradient(to right, #D99AD5, #9b4d96);
+    --PrimaryObjects: #504883;
+
+    --SecondaryBackground: #F2865E;
+    --SecondaryBackgroundGradient: linear-gradient(to right, #F2865E, #993e1d);
+    --SecondaryObjects: #FE955E;
+
+    --Button: #1D5902;
+
+    --RedDark: #6c1414;
+    --RedMedium: #d44141;
+    --RedLight: #eec4c4;
+
+    --GrayDark: #2c2c2c;
+    --GrayMedium: #707070;
+    --GrayLight: #eceeed;
+
+    /* Font Sizes */
+    --FontSizeH1: 3rem;
+    --FontSizeH2: 2.5rem;
+    --FontSizeH3: 2rem;
+    --FontSizeH4: 1.75rem;
+    --FontSizeH5: 1.5rem;
+    --FontSizeH6: 1.25rem;
+    --FontSizeH7: 1rem;
+    --FontSizeH8: 0.875rem;
+    --FontSizeH9: 0.75rem;
+    --FontSizeH10: 0.625rem;
+}

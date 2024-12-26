@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { livestreamBackground } from "../Resource"
+import { livestreamBackground } from "../../Resource"
 import ImageItem from "./ImageItem";
 
 export default function ImageList({selectedImage, setSelectedImage}) {

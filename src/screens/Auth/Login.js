@@ -1,12 +1,12 @@
 import { useState } from "react";
-import InputLogin from "./Components/InputLogin";
-import "./index.css"
+//import InputLogin from "../../Components/InputLogin";
 import { MdAccountCircle } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BASE_URL, checkError } from "./Resource";
+import { BASE_URL, checkError } from "../../Resource";
 
+import "./Auth.css"
 
 export default function Login (props) {
 
@@ -40,8 +40,8 @@ export default function Login (props) {
           <label className="loginForm-label">Sign In</label>
         </div>
         <div>
-          <InputLogin title="Username" icon={userNameIcon} value={userName} setValue={setUserName} type="text"/>
-          <InputLogin title="Password" icon={passwordIcon} value={password} setValue={setPassword} type="password"/>
+          {/* <InputLogin title="Username" icon={userNameIcon} value={userName} setValue={setUserName} type="text"/>
+          <InputLogin title="Password" icon={passwordIcon} value={password} setValue={setPassword} type="password"/>*/}
         </div>
         <div>
           <a className="loginForm-a" onClick={() => navigate("/registration")}>click here to sign up account</a>

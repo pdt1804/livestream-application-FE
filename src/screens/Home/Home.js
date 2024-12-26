@@ -1,6 +1,6 @@
 import { useState } from "react"
-import LivestreamList from "./Components/LivestreamList.js"
-import Navbar from "./Components/Navbar.js"
+import LivestreamList from "../../Components/LivestreamList.js"
+import Navbar from "../../Components/Navbar.js"
 import { useNavigate } from "react-router-dom"
 
 export default function Home (props) {
