@@ -1,7 +1,3 @@
-/* 
-var(--);
-*/
-
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -16,6 +12,10 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
 }
+
+/* 
+var(--);
+*/
 
 :root {
     /* Colors */
@@ -39,6 +39,7 @@ code {
 
     --White: #fafafa;
     --Transparent: hsla(0, 0%, 0%, 0);
+    --TestingArea: hsla(0, 0%, 100%, 0.2);
 
     /* Font Sizes */
     --FontSizeH1: 3rem;

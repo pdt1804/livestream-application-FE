@@ -4,9 +4,9 @@ import {
   Login,
   Registration,
   Home,
+  CreateLivestream,
   /* Livestream,
   ViewerLivestream,
-  CreateLivestream,
   About, */
 } from "../screens";
 
@@ -19,9 +19,9 @@ export default function RouterConfiguration() {
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/home/createLivestream" element={<CreateLivestream />} />
         {/* <Route path="/home/livestream" element={<Livestream />} />
         <Route path="/home/viewer" element={<ViewerLivestream />} />
-        <Route path="/home/createLivestream" element={<CreateLivestream />} />
         <Route path="/about" element={<About />} /> */}
       </Routes>
     </Router>

@@ -50,9 +50,6 @@ export default function CreateLivestream() {
         <div className="positionButtonCreateLivestream">
           <button className="buttonCreateLivestream" onClick={() => createLivestreamSession()}>Create</button>
         </div>
-        <br/>
-        <br/>
-        <br/>
       </div>
     </div>
   )

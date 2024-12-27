@@ -1,0 +1,56 @@
+.home {
+    width: 100vw;
+    height: 100vh;
+    background: var(--White);
+}
+
+.mainContent {
+    padding: 2.5rem 6.25rem;
+}
+
+.optionBar {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.inputLivestream {
+    width: 90%;
+    max-width: 300px;
+    height: 2.5rem;
+    font-size: var(--FontSizeH7);
+    padding-left: 10px;
+    border-radius: 20px;
+}
+
+.createLivestreamButton {
+    width: auto;
+    max-width: 250px;
+    height: 2.5rem;
+    font-size: var(--FontSizeH6);
+    font-weight: bold;
+    color: var(--White);
+    background-color: var(--RedMedium);
+    border: none;
+    border-radius: 14px;
+    padding: 0 1rem;
+    margin-top: 10px;
+}
+
+.createLivestreamButton:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.labelLivestreamSession {
+    color: var(--PrimaryObjects);
+    font-size: var(--FontSizeH5);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.labelLivestreamSession:hover {
+    text-decoration: underline;
+}

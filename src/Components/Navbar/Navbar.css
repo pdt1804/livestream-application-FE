@@ -1,0 +1,73 @@
+/* NavBar.css */
+.navbar-logo {
+    display: none;
+    margin-right: 1rem;
+}
+
+.navbar-title {
+    color: inherit;
+    text-decoration: none;
+}
+
+.navbar-menu {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.navbar-menu-item {
+    color: white;
+    display: block;
+    margin-right: 1rem;
+}
+
+.navbar-user {
+    flex-grow: 10;
+    justify-content: flex-end;
+}
+
+.navbar-avatar {
+    padding: 0;
+}
+
+.navbar-mobile-menu {
+    display: none;
+}
+
+.navbar-menu-icon {
+    color: white;
+}
+
+/* Media Queries for responsive design */
+@media (max-width: 600px) {
+    .navbar-title {
+        display: none;
+    }
+
+    .navbar-logo {
+        display: flex;
+        margin-left: 1rem;
+    }
+
+    .navbar-menu {
+        display: none;
+    }
+
+    .navbar-mobile-menu {
+        display: block;
+    }
+
+    .navbar-menu-item {
+        margin: 0;
+    }
+}
+
+@media (min-width: 600px) {
+    .navbar-menu {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .navbar-mobile-menu {
+        display: none;
+    }
+}
