@@ -1,0 +1,41 @@
+.singleLabelText-label {
+    margin-left: 2rem;
+    font-size: var(--FontSizeH6);
+    font-weight: bold;
+}
+
+.singleLabelText-redDot {
+    color: var(--RedMedium);
+}
+
+.singleLabelText-input {
+    font-size: 1rem;
+    display: flex;
+    width: 85%;
+    height: 110%;
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-top: 0.5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 1.5rem;
+    border-radius: 5px;
+    border: 2px solid var(--GrayLight);
+    outline: none;
+    transition: border-color 0.3s ease;
+    /* Hiệu ứng mượt mà khi đổi màu viền */
+}
+
+.singleLabelText-input:hover {
+    border-color: var(--GrayMedium);
+    /* Viền đậm hơn khi hover */
+}
+
+.singleLabelText-input:focus {
+    border-color: var(--PrimaryObjects);
+    /* Viền đổi màu khi chọn để nhập liệu */
+    border-width: 3px;
+    /* Viền đậm hơn */
+}

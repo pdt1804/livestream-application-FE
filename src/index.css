@@ -12,23 +12,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.inputLogin-label {
-  padding: 1.5rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.inputLogin-ImageInputArea {
-  display: flex;
-  padding: 1rem;
-  margin-bottom: 2rem;
-}
-
-.inputLogin-input {
-  width: 85%;
-  padding-left: 1rem;
-  font-size: 1rem;
-}
 
 .RegistrationForm {
   background-color: aliceblue;
