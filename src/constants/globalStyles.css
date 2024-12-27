@@ -1,5 +1,5 @@
 /* 
-var(--)
+var(--);
 */
 
 body {
@@ -38,6 +38,7 @@ code {
     --GrayLight: #eceeed;
 
     --White: #fafafa;
+    --Transparent: hsla(0, 0%, 0%, 0);
 
     /* Font Sizes */
     --FontSizeH1: 3rem;

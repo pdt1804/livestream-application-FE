@@ -1,5 +1,9 @@
-import { useState } from "react";
-import { InputLabelText } from "../../Components/CustomInput";
+import { useState, useEffect } from "react";
+import {
+  SingleLabelText,
+  DisableButton,
+  TransparentButton,
+} from "../../Components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL, checkError } from "../../Resource";
@@ -10,7 +14,12 @@ export default function Login(props) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isAbleToLogin, setIsAbleToLogin] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    !userName || !password ? setIsAbleToLogin(false) : setIsAbleToLogin(true);
+  }, [userName, password]);
 
   const authenticate = async () => {
     const request = await axios.get(
@@ -28,6 +37,7 @@ export default function Login(props) {
         localStorage.setItem("nickName", splitData[1]);
         navigate("/home");
       } else {
+        setIsAbleToLogin(false)
         setErrorMessage(getErrorMessage);
       }
     }
@@ -40,32 +50,29 @@ export default function Login(props) {
           <label className="loginForm-label">Đăng Nhập LiveStream</label>
         </div>
         <div>
-          <InputLabelText
+          <SingleLabelText
             title={"Tên người dùng"}
             type={"text"}
             value={userName}
             setValue={setUserName}
           />
-          <InputLabelText
+          <SingleLabelText
             title={"Mật khẩu"}
             type={"password"}
             value={password}
             setValue={setPassword}
           />
         </div>
-        {/* <div>
-          <a className="loginForm-a" onClick={() => navigate("/registration")}>
-            click here to sign up account
-          </a>
-        </div> */}
-        <div className="loginForm-errorMessage">
-          <h2 className="loginForm-h2">{errorMessage}</h2>
-        </div>
-        <div className="loginForm-buttonArea">
-          <button className="loginForm-button" onClick={() => authenticate()}>
-            Sign In
-          </button>
-        </div>
+        <label className="loginForm-errorMessage">{errorMessage}</label>
+        <DisableButton
+          label={"Đăng nhập"}
+          customCondition={isAbleToLogin}
+          onClick={() => authenticate()}
+        />
+        <TransparentButton
+          label={"Bạn không có tài khoản? Đăng ký"}
+          onClick={() => navigate("/registration")}
+        />
       </div>
     </div>
   );

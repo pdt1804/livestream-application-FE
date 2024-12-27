@@ -1,0 +1,52 @@
+.disableButton-button {
+    width: 85%;
+    padding: 0.35rem 0.5rem;
+    margin: 0.5rem 2rem 1.5rem;
+    font-size: var(--FontSizeH7);
+    font-weight: bold;
+    color: var(--White);
+    background-color: var(--PrimaryBackground);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.disableButton-button:hover {
+    background-color: var(--PrimaryObjects);
+}
+
+.disableButton-button:active {
+    background-color: var(--PrimaryBackground);
+}
+
+.disableButton-button.disabled {
+    color: var(--GrayMedium);
+    background-color: var(--GrayLight);
+    cursor: not-allowed;
+}
+
+/* ***** */
+.transparentButton-button {
+    width: 85%;
+    padding: 0.35rem 0.5rem;
+    margin: 0.5rem 2rem 1.5rem;
+    border-radius: 5px;
+    font-size: var(--FontSizeH7);
+    font-weight: bold;
+    color: var(--PrimaryObjects);
+    background-color: var(--Transparent);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.transparentButton-button:hover {
+    color: var(--GrayDark);
+    background-color: var(--GrayLight);
+}
+
+.transparentButton-button:active {
+    background-color: var(--PrimaryBackground);
+}

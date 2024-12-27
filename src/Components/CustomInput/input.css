@@ -13,14 +13,8 @@
     display: flex;
     width: 85%;
     height: 110%;
-    padding-top: 0.35rem;
-    padding-bottom: 0.35rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    margin-top: 0.5rem;
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-bottom: 1.5rem;
+    padding: 0.35rem 0.5rem;
+    margin: 0.5rem 2rem 1.5rem;
     border-radius: 5px;
     border: 2px solid var(--GrayLight);
     outline: none;

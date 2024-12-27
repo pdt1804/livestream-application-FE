@@ -1,3 +1,12 @@
+.loginBackground {
+    width: 100%;
+    height: 100vmin;
+    background: var(--SecondaryBackgroundGradient);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .loginForm {
     background-color: var(--White);
     width: 30%;
@@ -6,15 +15,6 @@
     border: 0.3rem var(--RedMedium) solid;
     border-radius: 1rem;
     display: block;
-}
-
-.loginBackground {
-    width: 100%;
-    height: 100vmin;
-    background: var(--SecondaryBackgroundGradient);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .loginForm-label {
@@ -27,49 +27,10 @@
     font-weight: bold;
 }
 
-
-.loginForm-a {
-    font-size: var(--FontSizeH9);
-    text-decoration: underline;
-    justify-content: flex-end;
-    display: flex;
-    padding-right: 1.5rem;
-    color: var(--PrimaryObjects);
-}
-
-.loginForm-button {
-    width: 8rem;
-    height: 2.5rem;
-    font-size: var(--FontSizeH6);
-    border: 0.2rem transparent solid;
-    border-radius: 0.6rem;
-    color: var(--PrimaryObjects);
-    background-color: var(--PrimaryBackground);
-}
-
-.loginForm-button:hover {
-    opacity: 0.4;
-}
-
-.loginForm-button:active {
-    width: 6rem;
-    height: 2rem;
-    font-size: var(--FontSizeH5);
-}
-
-.loginForm-buttonArea {
+.loginForm-errorMessage {
+    font-size: var(--FontSizeH7);
+    color: var(--RedMedium);
     display: flex;
     justify-content: center;
-}
-
-.loginForm-h2 {
-    font-size: var(--FontSizeH6);
-    color: var(--RedDark);
-    padding-left: 1rem;
-    padding-top: 0.5rem;
-}
-
-.loginForm-errorMessage {
-    height: 10%;
-    margin-bottom: 1rem;
+    font-weight: bold;
 }

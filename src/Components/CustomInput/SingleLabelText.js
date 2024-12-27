@@ -1,4 +1,4 @@
-import "./CustomInput.css";
+import "./input.css";
 
 export default function SingleLabelText({title, type, value, setValue}) {
   return (
