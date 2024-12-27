@@ -1,4 +1,4 @@
-.loginBackground {
+.authBackground {
     width: 100%;
     height: 100vmin;
     background: var(--SecondaryBackgroundGradient);
@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.loginForm {
+.authForm {
     background-color: var(--White);
     width: 30%;
     height: 'auto';
@@ -17,7 +17,7 @@
     display: block;
 }
 
-.loginForm-label {
+.authForm-label {
     font-size: var(--FontSizeH3);
     display: flex;
     justify-content: center;
@@ -27,7 +27,7 @@
     font-weight: bold;
 }
 
-.loginForm-errorMessage {
+.authForm-errorMessage {
     font-size: var(--FontSizeH7);
     color: var(--RedMedium);
     display: flex;

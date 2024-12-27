@@ -1,15 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-/* import {
+import {
   Login,
-  Livestream,
-  ViewerLivestream,
   Registration,
   Home,
+  /* Livestream,
+  ViewerLivestream,
   CreateLivestream,
-  About,
-} from "../screens/indexScns"; */
-import Login from "../screens/Auth/Login"
+  About, */
+} from "../screens";
 
 
 export default function RouterConfiguration() {
@@ -18,11 +17,11 @@ export default function RouterConfiguration() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/home" element={<Home />} />
         {/* <Route path="/home/livestream" element={<Livestream />} />
         <Route path="/home/viewer" element={<ViewerLivestream />} />
         <Route path="/home/createLivestream" element={<CreateLivestream />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} /> */}
       </Routes>
     </Router>

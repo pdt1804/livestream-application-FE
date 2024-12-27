@@ -37,18 +37,16 @@ export default function Login(props) {
         localStorage.setItem("nickName", splitData[1]);
         navigate("/home");
       } else {
-        setIsAbleToLogin(false)
+        setIsAbleToLogin(false);
         setErrorMessage(getErrorMessage);
       }
     }
   };
 
   return (
-    <div className="loginBackground">
-      <div className="loginForm">
-        <div>
-          <label className="loginForm-label">Đăng Nhập LiveStream</label>
-        </div>
+    <div className="authBackground">
+      <div className="authForm">
+        <label className="authForm-label">Đăng Nhập LiveStream</label>
         <div>
           <SingleLabelText
             title={"Tên người dùng"}
@@ -63,7 +61,7 @@ export default function Login(props) {
             setValue={setPassword}
           />
         </div>
-        <label className="loginForm-errorMessage">{errorMessage}</label>
+        <label className="authForm-errorMessage">{errorMessage}</label>
         <DisableButton
           label={"Đăng nhập"}
           customCondition={isAbleToLogin}

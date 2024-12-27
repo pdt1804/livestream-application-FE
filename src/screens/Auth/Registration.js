@@ -1,22 +1,31 @@
 import { useState } from "react";
-import InputLogin from "../../Components/InputLogin";
-import "./index.css"
-import { MdAccountCircle } from "react-icons/md";
-import { RiLockPasswordFill } from "react-icons/ri";
-import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
-import { FaCakeCandles } from "react-icons/fa6";
+import {
+  SingleLabelText,
+  SingleLabelComboBox,
+  DisableButton,
+  TransparentButton,
+} from "../../Components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL, checkError } from "../../Resource";
 
+import "./Auth.css";
 
-export default function Registration (props) {
+export default function Registration(props) {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [nickName, setNickName] = useState("");
   const [yearOfBorn, setYearOfBorn] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isAbleToSignUp, setIsAbleToSignUp] = useState(false);
   const navigate = useNavigate();
+
+  //Lấy list năm
+  const currentYear = new Date().getFullYear();
+  const validYears = [];
+  for (let year = currentYear; year >= currentYear - 150; year--) {
+    validYears.push(year);
+  }
 
   const registerAccount = async () => {
     const user = {
@@ -24,50 +33,70 @@ export default function Registration (props) {
       passWord: password,
       nickName: nickName,
       yearOfBorn: yearOfBorn,
-    }
+    };
 
-    const request = await axios.post(BASE_URL + "/api/v1/user/createAccount", user)
-    console.log(request.data)
+    const request = await axios.post(
+      BASE_URL + "/api/v1/user/createAccount",
+      user
+    );
+    console.log(request.data);
 
     if (request.status == 200) {
       const getErrorMessage = checkError(request.data);
       if (getErrorMessage === null) {
-        navigate("/login")
+        navigate("/login");
       } else {
         setErrorMessage(getErrorMessage);
       }
     } else {
-      setErrorMessage("Error orcurred, please check your network !")
+      setErrorMessage("Error orcurred, please check your network !");
     }
-  }
-
-  const userNameIcon = <MdAccountCircle size={40} color="#9ec9ec" style={{marginRight: "10px"}}/>
-  const passwordIcon = <RiLockPasswordFill size={40} color="#9ec9ec" style={{marginRight: "10px"}}/>
-  const nickNameIcon = <MdOutlineDriveFileRenameOutline size={40} color="#9ec9ec" style={{marginRight: "10px"}}/>
-  const yearBornIcon = <FaCakeCandles size={40} color="#9ec9ec" style={{marginRight: "10px"}}/>
+  };
 
   return (
-    <div className="RegistrationBackground">
-      <div className="RegistrationForm">
+    <div className="authBackground">
+      <div className="authForm">
+        <label className="authForm-label">
+          Tham gia LiveStream ngay hôm nay
+        </label>
         <div>
-          <label className="RegistrationForm-label">Sign Up</label>
+          <SingleLabelText
+            title={"Tên người dùng"}
+            type={"text"}
+            value={userName}
+            setValue={setUserName}
+          />
+          <SingleLabelText
+            title={"Password"}
+            type={"password"}
+            value={password}
+            setValue={setPassword}
+          />
+          <SingleLabelText
+            title={"Biệt danh"}
+            type={"text"}
+            value={nickName}
+            setValue={setNickName}
+          />
+          <SingleLabelComboBox
+            title={"Năm sinh"}
+            placeholder={"Chọn năm sinh"}
+            listOptions={validYears}
+            value={yearOfBorn}
+            setValue={setYearOfBorn}
+          />
         </div>
-        <div>
-          <InputLogin title="Username" icon={userNameIcon} value={userName} setValue={setUserName} type="text"/>
-          <InputLogin title="Password" icon={passwordIcon} value={password} setValue={setPassword} type="password"/>
-          <InputLogin title="Nick name" icon={nickNameIcon} value={nickName} setValue={setNickName} type="text"/>
-          <InputLogin title="Year of Birth" icon={yearBornIcon} value={yearOfBorn} setValue={setYearOfBorn} type="number"/>
-        </div>
-        <div>
-          <a className="RegistrationForm-a" onClick={() => navigate("/login")}>Back to sign in</a>
-        </div>
-        <div className="RegistrationForm-errorMessage">
-          <h2 className="RegistrationForm-h2">{errorMessage}</h2>
-        </div>
-        <div className="RegistrationForm-buttonArea">
-          <button className="RegistrationForm-button" onClick={() => registerAccount()}>Sign Up</button>
-        </div>
+        <label className="authForm-errorMessage">{errorMessage}</label>
+        <DisableButton
+          label={"Đăng ký"}
+          customCondition={isAbleToSignUp}
+          onClick={() => registerAccount()}
+        />
+        <TransparentButton
+          label={"Bạn đã có tài khoản? Đăng nhập"}
+          onClick={() => navigate("/login")}
+        />
       </div>
     </div>
-  )
+  );
 }
