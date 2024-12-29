@@ -1,0 +1,147 @@
+/* Global reset */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.about {
+    width: 100vw;
+    height: 100vh;
+    background: var(--PrimaryObjectsSub2);
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Brief Introduction Section */
+.briefIntroduction {
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0rem;
+}
+
+.introductionCard {
+    width: 100vw;
+    max-width: 18rem;
+    background-color: var(--PrimaryBackground);
+    border: 0.25rem solid #343743;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.numberAboutUs {
+    font-size: 3rem;
+    color: var(--PrimaryObjectsSub1);
+    font-weight: bold;
+}
+
+.contentAboutUs {
+    font-size: 1.25rem;
+    color: var(--PrimaryObjectsSub1);
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Information About Us Section */
+.informationAboutUs {
+    width: 100vw;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.publicInformationArea,
+.privateInformationArea {
+    width:fit-content;
+    background-color: var(--PrimaryBackground);
+    border: 0.25rem solid #343743;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 5rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.informationLabel {
+    font-size: 1.25rem;
+    color: var(--PrimaryObjectsSub1);
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.rowInformation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+}
+
+.updatePublicInformation,
+.updatePrivateInformation {
+    height: 2.5rem;
+    background: #bf2a2a;
+    color: #ffffff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0 1rem;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.updatePublicInformation:hover,
+.updatePrivateInformation:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    .briefIntroduction {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .informationAboutUs {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .introductionCard {
+        width: 100%;
+        max-width: 90%;
+    }
+
+    .numberAboutUs {
+        font-size: 2.5rem;
+    }
+
+    .contentAboutUs {
+        font-size: 1rem;
+    }
+
+    .informationLabel {
+        font-size: 1rem;
+    }
+
+    .updatePublicInformation,
+    .updatePrivateInformation {
+        font-size: 0.9rem;
+    }
+}

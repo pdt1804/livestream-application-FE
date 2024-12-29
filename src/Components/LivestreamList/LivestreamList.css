@@ -1,0 +1,42 @@
+.LivestreamList {
+    padding-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 200px;
+}
+
+.livestreamItem {
+    width: 20%;
+    height: auto;
+    background: #163858;
+    display: block;
+    padding: 0.625rem;
+    margin-right: 1.5625rem;
+    margin-bottom: 1.5625rem;
+    border-radius: 0.625rem;
+}
+
+.livestreamItem:hover {
+    cursor: pointer;
+    opacity: 50%;
+}
+
+.imageLivestreamItem {
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.3125rem;
+}
+
+.headerLivestreamItem {
+    font-size: 1rem;
+    font-weight: bold;
+    color: aliceblue;
+    display: block;
+    height: auto;
+}
+
+.nickNameLivestreamItem {
+    font-size: 0.75rem;
+    font-weight: 200;
+    color: aliceblue;
+}

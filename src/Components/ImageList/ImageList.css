@@ -1,0 +1,41 @@
+/* index.css */
+.imageList {
+  width: 85%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-gap: 1rem;
+  padding: 2rem;
+  max-height: 30vh;
+  /* Fixed height */
+  overflow-y: auto;
+  /* Allow vertical scrolling */
+}
+
+.imageItem {
+  width: 90%;
+  aspect-ratio: 10 / 9;
+  border: 4px solid transparent;
+  background-color: var(--White);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  transition: border 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+
+.imageItem:hover {
+  opacity: 70%;
+}
+
+.imageItem.selected {
+  opacity: 50%;
+  border: 4px solid var(--RedMedium);
+}
+
+.checkedIcon {
+  font-size: 7rem;
+  color: var(--RedDark);
+  pointer-events: none;
+}

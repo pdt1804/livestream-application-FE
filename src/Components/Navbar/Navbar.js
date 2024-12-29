@@ -15,7 +15,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Add from "@mui/icons-material/Add";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 const pages = ["Home", "About"];
 
@@ -60,7 +60,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -94,6 +94,13 @@ export default function Navbar() {
     setAnchorElNav(null);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("userName")
+    localStorage.removeItem("nickName")
+    handleCloseNavMenu();
+    navigate("/login")
+  };
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -111,8 +118,7 @@ export default function Navbar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleLogout}>Logout</MenuItem>
     </Menu>
   );
 
@@ -134,7 +140,7 @@ export default function Navbar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <IconButton size="large" color="inherit">
           <Add />
         </IconButton>
         <p>Go Live</p>
@@ -152,7 +158,7 @@ export default function Navbar() {
             src="https://cdn-icons-png.flaticon.com/512/8792/8792047.png"
           />
         </IconButton>
-        <p>Profile</p>
+        <p>Logout</p>
       </MenuItem>
     </Menu>
   );
@@ -205,8 +211,8 @@ export default function Navbar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "#504883", display: "block" }}
+                onClick={() => navigate("/" + page)}
+                sx={{ my: 2, color: "#FE955E", display: "block" }}
               >
                 {page}
               </Button>
@@ -222,7 +228,7 @@ export default function Navbar() {
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ display: { xs: "none", md: "flex" }, color: "#FE955E" }}>
             <IconButton
               size="large"
               aria-label="Tạo buổi livestream mới"

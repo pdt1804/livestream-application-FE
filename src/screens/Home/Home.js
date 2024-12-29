@@ -1,6 +1,5 @@
 import { useState } from "react"
-//import LivestreamList from "../../Components/LivestreamList.js" */
-import Navbar from "../../Components/Navbar/Navbar";
+import {Navbar, LivestreamList} from "../../Components";
 import { useNavigate } from "react-router-dom"
 
 import "./Home.css";
@@ -11,7 +10,7 @@ export default function Home (props) {
       <Navbar/>
       <div className="mainContent">
         <label className="labelLivestreamSession">Đang phát sóng trực tiếp:</label>
-        {/* <LivestreamList/> */}
+        <LivestreamList/>
       </div>
     </div>
   )

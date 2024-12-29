@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   SingleLabelText,
   SingleLabelComboBox,
@@ -19,6 +19,12 @@ export default function Registration(props) {
   const [errorMessage, setErrorMessage] = useState("");
   const [isAbleToSignUp, setIsAbleToSignUp] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    !userName || !password || !nickName || !yearOfBorn
+      ? setIsAbleToSignUp(false)
+      : setIsAbleToSignUp(true);
+  }, [userName, password, nickName, yearOfBorn]);
 
   //Lấy list năm
   const currentYear = new Date().getFullYear();

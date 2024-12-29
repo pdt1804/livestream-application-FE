@@ -1,30 +1,34 @@
-import { useEffect, useState } from "react"
-import LivestreamItem from "./LivestreamItem"
-import axios from "axios"
-import { BASE_URL, checkError } from "../../Resource"
+import { useEffect, useState } from "react";
+import LivestreamItem from "./LivestreamListItem";
+import axios from "axios";
+import { BASE_URL, checkError } from "../../Resource";
+
+import "./LivestreamList.css"
 
 export default function LivestreamList() {
-  const [sessions, setSessions] = useState([])
+  const [sessions, setSessions] = useState([]);
 
   useEffect(() => {
     const gettingSessions = async () => {
-      const request = await axios.get(BASE_URL + "/api/v1/livestream/getAllSessions");
+      const request = await axios.get(
+        BASE_URL + "/api/v1/livestream/getAllSessions"
+      );
       if (request.status === 200) {
         const errorMessage = checkError(request.data);
         if (errorMessage === null) {
-          setSessions(request.data)
+          setSessions(request.data);
         } else {
-          console.error(errorMessage)
+          console.error(errorMessage);
         }
       }
-    }
+    };
 
-    gettingSessions()
-  }, [])
+    gettingSessions();
+  }, []);
 
   return (
     <div className="LivestreamList">
-      {sessions && sessions.map((item) => <LivestreamItem session={item}/>)}
+      {sessions && sessions.map((item) => <LivestreamItem session={item} />)}
     </div>
-  )
+  );
 }

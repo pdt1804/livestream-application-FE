@@ -1,39 +1,56 @@
-import { useEffect, useState } from "react"
-import LivestreamList from "../../Components/LivestreamList.js"
-import Navbar from "../../Components/Navbar.js"
-import { useNavigate } from "react-router-dom"
-import IntroductionCard from "../../Components/IntroductionCard.js"
-import axios from "axios"
-import { BASE_URL, checkError } from "../../Resource.js"
-import { Bounce, ToastContainer, toast } from 'react-toastify';
+import { useEffect, useState } from "react";
+import {
+  Navbar,
+  IntroductionCard,
+  SingleLabelText,
+  DisableButton,
+} from "../../Components";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BASE_URL, checkError } from "../../Resource.js";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 
-export default function About (props) {
+import "./About.css";
 
-  const [nickName, setNickName] = useState(localStorage.getItem("nickName"))
-  const [password, setPassword] = useState(null)
-  const [newPassword, setNewPassword] = useState(null)
-  const [reEnterPassword, setReEnterPassword] = useState(null)
-  const [totalLivestreamSessions, setTotalLivestreamSessions] = useState(null)
-  const [totalLivestreamHours, setTotalLivestreamHours] = useState(null)
-  const [availableDaysOfUser, setAvailableDaysOfUser] = useState(null)
+export default function About(props) {
+  const currentNickName = localStorage.getItem("nickName");
+  const [nickName, setNickName] = useState(localStorage.getItem("nickName"));
+  const [password, setPassword] = useState(null);
+  const [newPassword, setNewPassword] = useState(null);
+  const [reEnterPassword, setReEnterPassword] = useState(null);
+  const [totalLivestreamSessions, setTotalLivestreamSessions] = useState(null);
+  const [totalLivestreamHours, setTotalLivestreamHours] = useState(null);
+  const [availableDaysOfUser, setAvailableDaysOfUser] = useState(null);
+  const [isAbleToUpdate, setIsAbleToUpdate] = useState(false);
+  const [isAbleToSave, setIsAbleToSave] = useState(false);
+
+  useEffect(() => {
+    !nickName && nickName != currentNickName ? setIsAbleToUpdate(false) : setIsAbleToUpdate(true);
+  }, [nickName]);
+
+  useEffect(() => {
+    !password || !newPassword || !reEnterPassword ? setIsAbleToSave(false) : setIsAbleToSave(true);
+  }, [password, newPassword, reEnterPassword]);
 
   useEffect(() => {
     const getInformationAboutUser = async () => {
-      const userName = localStorage.getItem("userName")
-      const request = await axios.get(BASE_URL + "/api/v1/user/getInformationAboutUser?userName=" + userName)
+      const userName = localStorage.getItem("userName");
+      const request = await axios.get(
+        BASE_URL + "/api/v1/user/getInformationAboutUser?userName=" + userName
+      );
       if (request.status === 200) {
         if (request.data !== null) {
-          setTotalLivestreamHours(request.data.totalOfHourLivestreamSessions)
-          setAvailableDaysOfUser(request.data.daysOfAvailableUser)
-          setTotalLivestreamSessions(request.data.totalLivestreamSessions)
+          setTotalLivestreamHours(request.data.totalOfHourLivestreamSessions);
+          setAvailableDaysOfUser(request.data.daysOfAvailableUser);
+          setTotalLivestreamSessions(request.data.totalLivestreamSessions);
         } else {
-          errorNotify("Error while getting date about user !")
+          errorNotify("Error while getting date about user !");
         }
       }
-    }
+    };
 
-    getInformationAboutUser()
-  }, [])
+    getInformationAboutUser();
+  }, []);
 
   const successfulNotify = (message) => {
     toast.success(message, {
@@ -47,7 +64,7 @@ export default function About (props) {
       theme: "light",
       transition: Bounce,
     });
-  }
+  };
 
   const errorNotify = (message) => {
     toast.error(message, {
@@ -61,81 +78,119 @@ export default function About (props) {
       theme: "light",
       transition: Bounce,
     });
-  }
+  };
 
   const updateNickName = async () => {
-    const userName = localStorage.getItem("userName")
-    const request = await axios.put(BASE_URL + "/api/v1/user/updateNickName?userName=" + userName + "&newNickName=" + nickName);
+    const userName = localStorage.getItem("userName");
+    const request = await axios.put(
+      BASE_URL +
+        "/api/v1/user/updateNickName?userName=" +
+        userName +
+        "&newNickName=" +
+        nickName
+    );
     if (request.status === 200) {
-      const errorMessage = checkError(request.data) 
+      const errorMessage = checkError(request.data);
       if (errorMessage === null) {
-        localStorage.setItem("nickName", nickName)
-        successfulNotify("Update nickname successfully")
+        localStorage.setItem("nickName", nickName);
+        successfulNotify("Update nickname successfully");
       } else {
-        console.error(errorMessage)
+        console.error(errorMessage);
       }
     }
-  }
+  };
 
   const changePassword = async () => {
     if (reEnterPassword === newPassword) {
-      const userName = localStorage.getItem("userName")
-      const request = await axios.put(BASE_URL + "/api/v1/user/changePassword?userName=" + userName + "&currentPassword=" + password + "&newPassword=" + newPassword);
+      const userName = localStorage.getItem("userName");
+      const request = await axios.put(
+        BASE_URL +
+          "/api/v1/user/changePassword?userName=" +
+          userName +
+          "&currentPassword=" +
+          password +
+          "&newPassword=" +
+          newPassword
+      );
       if (request.status === 200) {
-        const errorMessage = checkError(request.data) 
+        const errorMessage = checkError(request.data);
         if (errorMessage === null) {
-          successfulNotify("Change password successfully")
-          clearInput()
+          successfulNotify("Change password successfully");
+          clearInput();
         } else {
-          console.error(errorMessage)
-          errorNotify(errorMessage)
-          clearInput()
+          console.error(errorMessage);
+          errorNotify(errorMessage);
+          clearInput();
         }
       }
     } else {
-      errorNotify("New Password and Re-enter Password are not correct !")
-      clearInput()
+      errorNotify("New Password and Re-enter Password are not correct !");
+      clearInput();
     }
-  }
+  };
 
   const clearInput = () => {
-    setPassword("")
-    setNewPassword("")  
-    setReEnterPassword("")
-  }
+    setPassword("");
+    setNewPassword("");
+    setReEnterPassword("");
+  };
 
   return (
     <div className="about">
-      <Navbar/>
+      <Navbar />
       <div className="briefIntroduction">
-        <IntroductionCard number={totalLivestreamSessions} content="Livestream Sessions"/>
-        <IntroductionCard number={totalLivestreamHours} content="Livestream Hours"/>
-        <IntroductionCard number={availableDaysOfUser} content="Active Days"/>
+        <IntroductionCard
+          number={totalLivestreamSessions}
+          content="Livestream Sessions"
+        />
+        <IntroductionCard
+          number={totalLivestreamHours}
+          content="Livestream Hours"
+        />
+        <IntroductionCard number={availableDaysOfUser} content="Active Days" />
       </div>
       <div className="informationAboutUs">
         <div className="publicInformationArea">
           <label className="informationLabel">Public Information</label>
-          <div className="publicInformation">
-            <label className="labelAboutUs">NickName: </label>
-            <input className="inputAboutUs" value={nickName} onChange={(e) => setNickName(e.target.value)}/>
-            <button className="updatePublicInformation" onClick={() => updateNickName()}>Update</button>
-          </div>
+          <SingleLabelText
+            title={"Biệt danh"}
+            type={"text"}
+            value={nickName}
+            setValue={setNickName}
+          />
+          <DisableButton
+            label={"Cập nhật biệt danh"}
+            customCondition={isAbleToUpdate}
+            onClick={() => updateNickName()}
+          />
         </div>
         <div className="privateInformationArea">
           <label className="informationLabel">Private Information</label>
           <div className="rowInformation">
-            <label className="labelAboutUs">Current Password: </label>
-            <input className="inputAboutUs" value={password} onChange={(e) => setPassword(e.target.value)}/>
+            <SingleLabelText
+              title={"Mật khẩu hiện tại"}
+              type={"text"}
+              value={password}
+              setValue={setPassword}
+            />
+            <SingleLabelText
+              title={"Mật khẩu mới"}
+              type={"text"}
+              value={newPassword}
+              setValue={setNewPassword}
+            />
+            <SingleLabelText
+              title={"Xác nhận mật khẩu mới"}
+              type={"text"}
+              value={reEnterPassword}
+              setValue={setReEnterPassword}
+            />
           </div>
-          <div className="rowInformation">
-            <label className="labelAboutUs">New Password: </label>
-            <input className="inputAboutUs" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}/>
-          </div>
-          <div className="rowInformation">
-            <label className="labelAboutUs">Re-enter New Password: </label>
-            <input className="inputAboutUs" value={reEnterPassword} onChange={(e) => setReEnterPassword(e.target.value)}/>
-          </div>
-          <button className="updatePrivateInformation" onClick={() => changePassword()}>Save</button>
+          <DisableButton
+            label={"Lưu mật khẩu mới"}
+            customCondition={isAbleToSave}
+            onClick={() => changePassword()}
+          />
         </div>
       </div>
       <ToastContainer
@@ -149,8 +204,8 @@ export default function About (props) {
         draggable
         pauseOnHover
         theme="light"
-        transition={Bounce}/>    
+        transition={Bounce}
+      />
     </div>
-  )
+  );
 }
-

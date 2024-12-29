@@ -5,7 +5,7 @@ body {
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #95a4df;
+    background-color: #332f4d;
 }
 
 code {
@@ -22,10 +22,14 @@ var(--);
     --PrimaryBackground: #D99AD5;
     --PrimaryBackgroundGradient: linear-gradient(to right, #D99AD5, #9b4d96);
     --PrimaryObjects: #504883;
+    --PrimaryObjectsSub1: #46406b;
+    --PrimaryObjectsSub2: #332f4d;
 
     --SecondaryBackground: #F2865E;
     --SecondaryBackgroundGradient: linear-gradient(to right, #F2865E, #993e1d);
     --SecondaryObjects: #FE955E;
+    --SecondaryObjectsSub1: #cf6c36;
+    --SecondaryObjectsSub2: #ac5d33;
 
     --Button: #1D5902;
 
@@ -33,6 +37,7 @@ var(--);
     --RedMedium: #d44141;
     --RedLight: #eec4c4;
 
+    --GrayDarker: #161616;
     --GrayDark: #2c2c2c;
     --GrayMedium: #707070;
     --GrayLight: #eceeed;

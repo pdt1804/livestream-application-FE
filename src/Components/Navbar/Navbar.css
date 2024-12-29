@@ -15,7 +15,7 @@
 }
 
 .navbar-menu-item {
-    color: white;
+    color: var(--SecondaryObjects);
     display: block;
     margin-right: 1rem;
 }
@@ -34,7 +34,7 @@
 }
 
 .navbar-menu-icon {
-    color: white;
+    color: var(--SecondaryObjects);
 }
 
 /* Media Queries for responsive design */
