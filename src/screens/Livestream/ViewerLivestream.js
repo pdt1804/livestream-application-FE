@@ -4,19 +4,7 @@ import { Client } from "@stomp/stompjs";
 import { ViewerMessage, Dropdown } from "../../Components";
 import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import { IoIosSend } from "react-icons/io";
-import { BsArrowsFullscreen } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
-
-const generateRandomString = (length) => {
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let result = "";
-  const charactersLength = characters.length;
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-};
 
 export default function ViewerLivestream() {
   const location = useLocation();
@@ -144,7 +132,7 @@ export default function ViewerLivestream() {
   };
 
   const requestForOffer = async () => {
-    setValid(false);
+    setValid(false)
     try {
       rtcPeerConnection = new RTCPeerConnection(iceServers);
       rtcPeerConnection.ontrack = (event) => {
@@ -156,12 +144,9 @@ export default function ViewerLivestream() {
       const userInfoData = {
         viewerName: inputUserName,
         livestreamUserName: livestreamUserName,
-      };
+      }
 
-      stompClientRef.current.publish({
-        destination: "/app/requestForOffer",
-        body: JSON.stringify(userInfoData),
-      });
+      stompClientRef.current.publish({ destination: "/app/requestForOffer", body: JSON.stringify(userInfoData) });
     } catch (error) {
       console.error("Error creating or setting local description", error);
     }
@@ -201,13 +186,6 @@ export default function ViewerLivestream() {
     setMessage("");
   };
 
-  const fullScreenIcon = (
-    <BsArrowsFullscreen
-      className="fullScreenIcon"
-      onClick={() => handleFullScreen(livestreamScreen)}
-    />
-  );
-
   const options = [
     {
       id: 1,
@@ -223,13 +201,9 @@ export default function ViewerLivestream() {
         {valid ? (
             <div className="areaPlayButton">
               <button
-                className={
-                  valid == true
-                    ? "playLivestream-valid"
-                    : "playLivestream-invalid"
-                }
+                className={"playLivestream-valid"}
                 onClick={() => requestForOffer()}
-              ></button>
+              />
             </div>
           ) : (
             <video className="screenVideo" ref={livestreamScreen} autoPlay />
